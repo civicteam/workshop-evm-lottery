@@ -1,0 +1,32 @@
+{
+  "name": "civic-pass-sample-lottery",
+  "license": "MIT",
+  "scripts": {
+    "_get-deployed-address": "cat deployments/${STAGE:-localhost}/Lottery.json | jq -r .address",
+    "local:start": "hardhat node",
+    "app:start": "export REACT_APP_CONTRACT_ADDRESS=${REACT_APP_CONTRACT_ADDRESS:-$(yarn --silent _get-deployed-address)} && cd app && yarn start",
+    "app:start:testnet": "STAGE=testnet yarn app:start",
+    "deploy:testnet": "hardhat deploy --network testnet"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": ">=9.1.0",
+    "chai": "^4.2.0",
+    "hardhat": "^2.14.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "hardhat-deploy": "^0.11.29"
+  }
+}
