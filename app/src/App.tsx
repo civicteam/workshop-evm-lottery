@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import {LotteryProvider, useLottery} from "./LotteryContext";
 import {useAccount} from "wagmi";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { CivicPassProvider } from "./CivicPassContext";
+import { GatewayStatus, IdentityButton, useGateway } from "@civic/ethereum-gateway-react";
 
 const Admin = () => {
     const { client, winner, totalTickets, pot } = useLottery();
@@ -22,12 +24,15 @@ const Admin = () => {
 
 const Player = () => {
     const { client, hasTicket, winner } = useLottery();
+    const { gatewayStatus } = useGateway();
     const { address } = useAccount();
     if (!client) return <></>;
 
     return (<div>
         <h1>Player Mode</h1>
-        { !hasTicket && <button onClick={() => client.getTicket()}>Enter Lottery</button>}
+        <IdentityButton />
+        { gatewayStatus !== GatewayStatus.ACTIVE && <div>Verify you are a unique person before entering</div>}
+        { !hasTicket && <button disabled={gatewayStatus !== GatewayStatus.ACTIVE} onClick={() => client.getTicket()}>Enter Lottery</button>}
         { hasTicket && <p><>You have a ticket</></p>}
         { winner === address && <div>
             <div>You won!</div>
@@ -62,9 +67,11 @@ const Content = () =>
 function App() {
     return (
         <div className="App">
-            <LotteryProvider>
-                <Content />
-            </LotteryProvider>
+            <CivicPassProvider>
+                <LotteryProvider>
+                    <Content />
+                </LotteryProvider>
+            </CivicPassProvider>
         </div>
     );
 }

@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Lottery.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\ncontract Lottery {\n    address payable[] public players;\n    mapping (address => bool) public uniquePlayers;\n    address public manager;\n    address payable public winner;\n\n    constructor() {\n        manager = msg.sender;\n    }\n\n    receive() external payable {}\n\n    function getTicket() external {\n        require(uniquePlayers[msg.sender] == false, \"You already have a ticket\");\n        players.push(payable(msg.sender));\n        uniquePlayers[msg.sender] = true;\n    }\n\n    function getBalance() public view returns(uint) {\n        return address(this).balance;\n    }\n\n    function random() public view returns(uint) {\n        return uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, players.length)));\n    }\n\n    function pickWinner() public {\n        require(msg.sender == manager);\n        uint r = random();\n\n        uint index = r % players.length;\n        winner = players[index];\n\n        winner.transfer(getBalance());\n        players = new address payable[](0);\n    }\n\n    function totalPlayers() public view returns(uint) {\n        return players.length;\n    }\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
