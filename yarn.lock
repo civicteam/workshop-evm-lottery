@@ -387,6 +387,11 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
+"@identity.com/gateway-protocol-eth@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@identity.com/gateway-protocol-eth/-/gateway-protocol-eth-0.0.4.tgz#d27c05735bf37874b9594baa4ae24803cc15c568"
+  integrity sha512-taEgq8tpKo4NTXnECqUEnVz3j550BSDvHtCfONzaazkROVjEw1ZoBImUbxfukNrKqrDnGzF4jOUewVBOcJctAA==
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.1.1.tgz#c08679063f279615a3326583ba3a90d1d82cc721"

@@ -9,6 +9,7 @@
     "deploy:testnet": "hardhat deploy --network testnet"
   },
   "devDependencies": {
+    "@identity.com/gateway-protocol-eth": "^0.0.4",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
@@ -20,13 +21,11 @@
     "@types/mocha": ">=9.1.0",
     "chai": "^4.2.0",
     "hardhat": "^2.14.0",
+    "hardhat-deploy": "^0.11.29",
     "hardhat-gas-reporter": "^1.0.8",
     "solidity-coverage": "^0.8.1",
     "ts-node": "^10.9.1",
     "typechain": "^8.1.0",
     "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "hardhat-deploy": "^0.11.29"
   }
 }
