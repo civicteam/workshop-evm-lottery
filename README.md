@@ -32,7 +32,7 @@ yarn app:start
 Deploy to testnet:
 
 ```shell
-yarn deploy:testnet
+PRIVATE_KEY=${YOUR_PRIVATE_KEY} yarn deploy:testnet
 ```
 
 Start the frontend pointing to testnet:
