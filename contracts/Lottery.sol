@@ -2,19 +2,21 @@
 
 pragma solidity ^0.8.0;
 
-contract Lottery {
+import "@identity.com/gateway-protocol-eth/contracts/Gated.sol";
+
+contract Lottery is Gated {
     address payable[] public players;
     mapping (address => bool) public uniquePlayers;
     address public manager;
     address payable public winner;
 
-    constructor() {
+    constructor(address gatewayTokenContract, uint256 gatekeeperNetwork) Gated(gatewayTokenContract, gatekeeperNetwork){
         manager = msg.sender;
     }
 
     receive() external payable {}
 
-    function getTicket() external {
+    function getTicket() external gated {
         require(uniquePlayers[msg.sender] == false, "You already have a ticket");
         players.push(payable(msg.sender));
         uniquePlayers[msg.sender] = true;

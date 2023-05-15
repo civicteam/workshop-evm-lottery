@@ -1,0 +1,41 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "@identity.com/gateway-protocol-eth/contracts/Gated.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.9;\n\nimport {IGatewayTokenVerifier} from \"./interfaces/IGatewayTokenVerifier.sol\";\n\ncontract Gated {\n    address private _gatewayTokenContract;\n    uint256 private _gatekeeperNetwork;\n\n    /// The gateway token is not valid.\n    error IsGated__InvalidGatewayToken(address gatewayToken);\n\n    constructor(address gatewayTokenContract, uint256 gatekeeperNetwork) {\n        _gatewayTokenContract = gatewayTokenContract;\n        _gatekeeperNetwork = gatekeeperNetwork;\n    }\n\n    modifier gated() {\n        IGatewayTokenVerifier verifier = IGatewayTokenVerifier(_gatewayTokenContract);\n        if (!verifier.verifyToken(msg.sender, _gatekeeperNetwork)) {\n            revert IsGated__InvalidGatewayToken(_gatewayTokenContract);\n        }\n        _;\n    }\n}\n"
+    },
+    "@identity.com/gateway-protocol-eth/contracts/interfaces/IGatewayTokenVerifier.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.9;\npragma experimental ABIEncoderV2;\n\ninterface IGatewayTokenVerifier {\n    /**\n     * @dev Triggered by external contract to verify if `slot` and token `owner` are correct.\n     *\n     * Checks if token exists in gateway token contract, `slot` still active, and not expired.\n     * Performs additional checks to verify that `owner` is not blacklisted globally.\n     */\n    function verifyToken(address owner, uint256 network) external view returns (bool);\n\n    function verifyToken(uint256 tokenId) external view returns (bool);\n}\n"
+    },
+    "contracts/Lottery.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\nimport \"@identity.com/gateway-protocol-eth/contracts/Gated.sol\";\n\ncontract Lottery is Gated {\n    address payable[] public players;\n    mapping (address => bool) public uniquePlayers;\n    address public manager;\n    address payable public winner;\n\n    constructor(address gatewayTokenContract, uint256 gatekeeperNetwork) Gated(gatewayTokenContract, gatekeeperNetwork){\n        manager = msg.sender;\n    }\n\n    receive() external payable {}\n\n    function getTicket() external gated {\n        require(uniquePlayers[msg.sender] == false, \"You already have a ticket\");\n        players.push(payable(msg.sender));\n        uniquePlayers[msg.sender] = true;\n    }\n\n    function getBalance() public view returns(uint) {\n        return address(this).balance;\n    }\n\n    function random() public view returns(uint) {\n        return uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, players.length)));\n    }\n\n    function pickWinner() public {\n        require(msg.sender == manager);\n        uint r = random();\n\n        uint index = r % players.length;\n        winner = players[index];\n\n        winner.transfer(getBalance());\n        players = new address payable[](0);\n    }\n\n    function totalPlayers() public view returns(uint) {\n        return players.length;\n    }\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
