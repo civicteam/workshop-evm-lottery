@@ -1084,26 +1084,27 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@civic/common-gateway-react@0.8.6":
-  version "0.8.6"
-  resolved "https://registry.yarnpkg.com/@civic/common-gateway-react/-/common-gateway-react-0.8.6.tgz#2f06ea947d4655a42340a47609aa9638a0d69ff0"
-  integrity sha512-+P8JhpIWTGFdxbn1VRRy7vVUJ2NlDyrYypAn5sZlkJHrq/ng/Xs+qX8SkHWefN6SAJ4ioRJuLlkcW8n/oAcBvg==
+"@civic/common-gateway-react@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@civic/common-gateway-react/-/common-gateway-react-0.9.0.tgz#0a6c0d4f29ca284d13305ef775692740c67cc8be"
+  integrity sha512-SBHQLJKhJ5MUvb8CrH+pQ7UHJnoMnaKwTrmCoMm5jdyGnN05bhgHQJaRaNg+3euEiSuRp3uSGnExUZiglv66gg==
   dependencies:
     fetch-retry-ts "^1.1.24"
     iframe-resizer-react "^1.1.0"
     ramda "^0.27.1"
     styled-components "^5.3.1"
+    uuid "^9.0.0"
 
-"@civic/ethereum-gateway-react@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@civic/ethereum-gateway-react/-/ethereum-gateway-react-0.10.1.tgz#29b7eff0b70338da3c64fb02070c0e418ad4a4a4"
-  integrity sha512-+9EP4lvHY7t6jRb2b2XlPr+Y0ae5xG6t6JchUbLM6foRCKxAIKPINCitVHTnRX7ykFvv9qcljPYmSrG7PK9PVA==
+"@civic/ethereum-gateway-react@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@civic/ethereum-gateway-react/-/ethereum-gateway-react-0.11.0.tgz#518372fcf5fd416dde1793ed99f61051cc0d8827"
+  integrity sha512-jRtgl6rR9vhunRzC7sAITEdjIPwkfNZ037U+7TP6weIHUeHH327F/g6vgEm3bdAtB1YND9Er3JG69tM6FEot5w==
   dependencies:
-    "@civic/common-gateway-react" "0.8.6"
+    "@civic/common-gateway-react" "0.9.0"
     "@ethersproject/abstract-signer" "^5.6.0"
     "@ethersproject/providers" "^5.6.2"
-    "@identity.com/gateway-eth-ts" "0.7.1"
-    "@identity.com/prove-ethereum-wallet" "1.1.0"
+    "@identity.com/gateway-eth-ts" "0.8.0-alpha.0"
+    "@identity.com/prove-ethereum-wallet" "1.1.1"
     ethers "5.7.2"
     ramda "^0.29.0"
 
@@ -1661,10 +1662,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@identity.com/gateway-eth-ts@0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@identity.com/gateway-eth-ts/-/gateway-eth-ts-0.7.1.tgz#56f8e93d47a789bfcbb615fe6cb97c00ee0eb958"
-  integrity sha512-fMCsVYOGEylttA+ZcWtt/SnOw+O1o+D6Kgsy1yKX7Vo3tQhACjk4VNxF6c7/bkuaYrh0shGoRYCGEKPDqbR00w==
+"@identity.com/gateway-eth-ts@0.8.0-alpha.0":
+  version "0.8.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@identity.com/gateway-eth-ts/-/gateway-eth-ts-0.8.0-alpha.0.tgz#01fc7dd3e5769245fc40e697c6f60df4327f1b3f"
+  integrity sha512-0SZ6MRhIqgPofYImz7n8tHhOGSwzQFhWwugNln5PJ5JUT5BASluNDYI14fUFl+hWg1eN6Gab2XQYb9fanbvFUw==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-signer" "^5.7.0"
@@ -1678,12 +1679,13 @@
     ramda "^0.28.0"
     tslib "^2.5.0"
 
-"@identity.com/prove-ethereum-wallet@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@identity.com/prove-ethereum-wallet/-/prove-ethereum-wallet-1.1.0.tgz#e135d7b6a995866a0a017f296a54ac402a293aca"
-  integrity sha512-872de5+TsGxv5t2th/ibAw1ux+aWjSvG5wqH0gg6pwzzUg6Ft7oITw2FmQTASxOuw4q3d9OwVD+yj9zH7NoEbA==
+"@identity.com/prove-ethereum-wallet@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@identity.com/prove-ethereum-wallet/-/prove-ethereum-wallet-1.1.1.tgz#a5eb9a9402f98e5c9b931049f7674c4d0a241afb"
+  integrity sha512-E0mqT6AfsDGGOJT4090OuHZDFJCVTH/pgNBFAba0RpJc1foD88LmkW53r7NEPnHz4qE6QnwSNIrJpVggT/dMhA==
   dependencies:
     "@ethersproject/abstract-signer" "^5.5.0"
+    buffer "^6.0.3"
     ethers "^5.5.1"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
@@ -11374,6 +11376,11 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
+  integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 v8-to-istanbul@^8.1.0:
   version "8.1.1"
